@@ -1,6 +1,8 @@
 // get list of all boxes
 var squares = document.querySelectorAll('td');
 
+var box_scored = [];
+
 // to restart gameplay and clear boxes
 
 var restart = document.querySelector("#b");
@@ -14,25 +16,37 @@ function clearBoard() {
 restart.addEventListener('click', clearBoard);
 
 // change box value
-function changeMarker(clickedBox) {
-    if (clickedBox.textContent === '') {
-        clickedBox.textContent = 'X';
-    } else if (clickedBox.textContent === 'X') {
-        clickedBox.textContent = 'O';
+function markAsX() {
+    if (this.textContent === '' || this.textContent === 'O') {
+        this.textContent = 'X';
+        console.log('here i am');
+        checkWin(this);
     } else {
-        clickedBox.textContent = '';
+        this.textContent = '';
+        checkWin(this);
     }
 }
 
-// for (var i = 0; i < squares.length; i++) {
-//     squares[i].addEventListener('click', changeMarker)
-//     console.log('checking');
-// }
+function markAsO() {
+    if (this.textContent === '' || this.textContent === 'X') {
+        this.textContent = 'O';
+        checkWin(this);
+    } else {
+        this.textContent = '';
+        checkWin(this);
+    }
+}
+
+for (var i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('click', markAsX);
+    squares[i].addEventListener('contextmenu', markAsO);
+    console.log('checking');
+}
 
 function checkWin(thisElement) {
     console.log('checking');
 
-    changeMarker(thisElement);
+    // changeMarker(thisElement);
     // get value in the most recently clicked box
     recentPlay = thisElement.textContent;
 
@@ -61,7 +75,7 @@ function compareValues(boxvalue, boxCol, boxRow) {
 
     // vertical check
     for (var i = 0; i < rowBoxes.length; i++) {
-        if (rowBoxes[i].textContent === boxvalue) {
+        if (rowBoxes[i].textContent === boxvalue && boxvalue !== '' && box_scored.includes(boxRow) === false) {
             sameness += 1;
         }
     }
@@ -69,29 +83,30 @@ function compareValues(boxvalue, boxCol, boxRow) {
     if (sameness !== 3) {
         sameness = 0;
     } else {
-        console.log('here i am' + sameness);
+        box_scored.push(boxRow);
+        console.log('win at check 1');
         return sameness;
     }
 
     // horizontal check
     for (var j = 0; j < colBoxes.length; j++) {
-        if (colBoxes[j].textContent === boxvalue) {
+        if (colBoxes[j].textContent === boxvalue && boxvalue !== '' && box_scored.includes(boxRow) === false) {
             sameness += 1;
         }
-        //console.log(colBoxes.length);
     }
 
     if (sameness !== 3) {
         sameness = 0;
     } else {
-        console.log('here i am' + sameness);
+        box_scored.push(boxCol);
+        console.log('win at check 2');
         return sameness;
     }
 
-    // diagonal check
+    // diagonal checks
 
-    for (var i = 0; i < squares.length; i += 2) {
-        if (squares[i].textContent === boxvalue) {
+    for (var i = 2; i < squares.length; i += 2) {
+        if (squares[i].textContent === boxvalue && boxvalue !== '' && box_scored.includes('diaG1') === false) {
             sameness += 1;
         }
     }
@@ -99,12 +114,13 @@ function compareValues(boxvalue, boxCol, boxRow) {
     if (sameness !== 3) {
         sameness = 0;
     } else {
-        console.log('here i am' + sameness);
+        box_scored.push('diaG1');
+        console.log('win at check 3');
         return sameness;
     }
 
     for (var i = 0; i < squares.length; i += 4) {
-        if (squares[i].textContent === boxvalue) {
+        if (squares[i].textContent === boxvalue && boxvalue !== '' && box_scored.includes('diaG2') === false) {
             sameness += 1;
         }
     }
