@@ -23,30 +23,48 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron">
-            <h1>Welcome to Tic Tac Toe</h1>
-            <p>Get ready to play!</p>
-            <button id="b" type="button" class="btn btn-primary btn-lg" name="button">Restart!</button>
+        <h1 align="center">Welcome to Tic Tac Toe!!! </h1>
+        <p align="center">Get ready to play, click restart after each match.</p>
+        <div>
+            <table class="table" align="right">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Player X</th>
+                        <th>Player O</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="scores">Scores</td>
+                        <td class="scores" id="playerX">0</td>
+                        <td class="scores" id="playerO">0</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    <table align="center">
-        <tr id="row1">
-            <td id="col1"></td>
-            <td id="col2"></td>
-            <td id="col3"></td>
-        </tr>
-        <tr id="row2">
-            <td id="col1"></td>
-            <td id="col2"></td>
-            <td id="col3"></td>
-        </tr>
-        <tr id="row3">
-            <td id="col1"></td>
-            <td id="col2"></td>
-            <td id="col3"></td>
-        </tr>
-    </table>
+        <table align="center">
+            <tr id="row1">
+                <td class="box" id="col1"></td>
+                <td class="box" id="col2"></td>
+                <td class="box" id="col3"></td>
+            </tr>
+            <tr id="row2">
+                <td class="box" id="col1"></td>
+                <td class="box" id="col2"></td>
+                <td class="box" id="col3"></td>
+            </tr>
+            <tr id="row3">
+                <td class="box" id="col1"></td>
+                <td class="box" id="col2"></td>
+                <td class="box" id="col3"></td>
+            </tr>
+        </table>
+
+        <button id="b" type="button" class="btn btn-primary btn-lg" name="button">Restart!</button>
+
+    </div>
 
     <script src="myscript.js"></script>
 </body>

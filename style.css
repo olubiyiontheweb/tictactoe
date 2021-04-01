@@ -12,3 +12,18 @@ td {
     border: 5px solid black;
     font-size: 100px;
 }
+
+th {
+    text-align: center;
+}
+
+td.scores {
+    height: inherit;
+    width: inherit;
+    font-size: inherit;
+}
+
+button#b {
+    margin-top: 30px;
+    float: right;
+}
