@@ -1,5 +1,5 @@
 # tictactoe
-TicTacToe game with pure Javascript
+TicTacToe game with vanilla Javascript
 
 Visit the link below to play
 
